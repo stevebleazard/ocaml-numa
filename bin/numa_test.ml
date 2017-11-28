@@ -79,12 +79,3 @@ let () =
   let rnodes = Numa.get_run_node_mask () in
   printf "get_run_node_mask(post set): "; List.iter rnodes ~f:(printf " %d"); printf "\n%!";
 
-  (*
-  let cpus = Numa_ext.numa_num_configured_cpus () in
-    printf "CPUs = %d\n%!" cpus;
-  let mask = Numa_ext.numa_allocate_cpumask () in
-    printf "mask allocated\n%!";
-  let () = run cpus mask in
-  let () = run cpus mask in
-   ()
-  *)
