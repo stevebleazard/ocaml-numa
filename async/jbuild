@@ -1,0 +1,4 @@
+(library
+ ((name numalib_async)
+   (libraries (numalib numalib_raw_async))
+ ))
