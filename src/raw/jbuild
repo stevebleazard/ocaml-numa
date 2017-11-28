@@ -1,0 +1,7 @@
+(library
+ ((name numalib_raw)
+  (c_libraries (numa))
+  (c_flags (:standard))
+  (c_names
+   (numa_stubs))
+  ))
