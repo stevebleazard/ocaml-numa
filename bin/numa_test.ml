@@ -40,13 +40,14 @@ let () =
   printf "num_possible_nodes: %d\n%!" (Numa.num_possible_nodes ());
   printf "max_node: %d\n%!" (Numa.max_node ());
   printf "num_configured_nodes: %d\n%!" (Numa.num_configured_nodes ());
+  printf "num_possible_cpus: %d\n%!" (Numa.num_possible_cpus ());
   printf "num_configured_cpus: %d\n%!" (Numa.num_configured_cpus ());
   printf "num_task_cpus: %d\n%!" (Numa.num_task_cpus ());
   printf "num_task_nodes: %d\n%!" (Numa.num_task_nodes ());
   printf "node_size64: %d\n%!" (Numa.node_size64 ~node:0);
   printf "node_size: %d\n%!" (Numa.node_size ~node:0);
   printf "pagesize: %d\n%!" (Numa.pagesize ());
-  let mems = Numa.get_mems_allowed () |> Numa.bits_of_bitmask in
+  let mems = Numa.get_mems_allowed () in
   printf "get_mems_allowed: "; List.iter mems ~f:(printf " %d"); printf "\n%!";
   let cpus = Numa.parse_cpustring "1-5" in
   printf "parse_cpustring: "; List.iter cpus ~f:(printf " %d"); printf "\n%!";
