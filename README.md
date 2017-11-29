@@ -7,3 +7,5 @@ library including:
 * Raw low level access to the C functions
 * A high level API
 * Async support
+
+See the NUMA(3) man page for more information
