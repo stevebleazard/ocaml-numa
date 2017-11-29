@@ -53,7 +53,7 @@ module Numa(IO : IO) : Numa_intf.S with module IO := IO = struct
   let get_mems_allowed () = Numa.numa_get_mems_allowed () >>= bits_of_bitmask
   let parse_cpustring s = Numa.numa_parse_cpustring s >>= bits_of_bitmask
   let parse_nodestring s = Numa.numa_parse_nodestring s >>= bits_of_bitmask
-  let node_of_cpu ~node = Numa.numa_node_of_cpu node
+  let node_of_cpu ~cpu = Numa.numa_node_of_cpu cpu
   let node_distance node1 node2 = Numa.numa_distance node1 node2
 
   let get_affinity ~pid =

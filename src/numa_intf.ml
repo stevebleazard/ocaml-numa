@@ -20,7 +20,7 @@ module type S = sig
   val get_mems_allowed : unit -> int list IO.t
   val parse_cpustring : string -> int list IO.t
   val parse_nodestring : string -> int list IO.t
-  val node_of_cpu : node:int -> int IO.t
+  val node_of_cpu : cpu:int -> int IO.t
   val node_distance : int -> int -> int IO.t
   val get_affinity : pid:int -> int list IO.t
   val set_affinity : pid:int -> cpus:int list -> unit IO.t
