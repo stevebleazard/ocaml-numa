@@ -54,8 +54,6 @@ let () =
   printf "CPUs:";
   let cpus = Numa.node_to_cpus ~node:0 in List.iter cpus ~f:(printf " %d");
   printf "\n%!";
-  let mask = Numa.bits_to_bitmask [0;1;2;3] in
-  printf "mask 0,1,2,3: ";  List.iter (Numa.bits_of_bitmask mask) ~f:(printf " %d"); printf "\n%!";
   let pid = Unix.getpid () |> Pid.to_int in
   let cpus = Numa.get_affinity ~pid in
   printf "get_affinity: "; List.iter cpus ~f:(printf " %d"); printf "\n%!";
