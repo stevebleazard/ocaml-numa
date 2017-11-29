@@ -5,7 +5,7 @@ module type S = sig
 
   type bitmask
 
-  val node_to_cpus : int -> int list IO.t
+  val node_to_cpus : node:int -> int list IO.t
   val bits_of_bitmask : bitmask -> int list IO.t
   val bits_to_bitmask : int list -> bitmask IO.t
   val available : unit -> bool IO.t
@@ -20,14 +20,14 @@ module type S = sig
   val get_mems_allowed : unit -> bitmask IO.t
   val parse_cpustring : string -> int list IO.t
   val parse_nodestring : string -> int list IO.t
-  val node_of_cpu : int -> int IO.t
+  val node_of_cpu : node:int -> int IO.t
   val node_distance : int -> int -> int IO.t
   val get_affinity : pid:int -> int list IO.t
   val set_affinity : pid:int -> cpus:int list -> unit IO.t
   val preferred_node : unit -> int IO.t
   val set_preferred_node : node:int -> unit IO.t
-  val node_size64 : int -> int IO.t
-  val node_size : int -> int IO.t
+  val node_size64 : node:int -> int IO.t
+  val node_size : node:int -> int IO.t
   val pagesize : unit -> int IO.t
   val set_strict : strict:bool -> unit IO.t
   val get_interleave_mask : unit -> int list IO.t

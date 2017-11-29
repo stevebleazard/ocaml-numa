@@ -43,15 +43,15 @@ let () =
   printf "num_configured_cpus: %d\n%!" (Numa.num_configured_cpus ());
   printf "num_task_cpus: %d\n%!" (Numa.num_task_cpus ());
   printf "num_task_nodes: %d\n%!" (Numa.num_task_nodes ());
-  printf "node_size64: %d\n%!" (Numa.node_size64 0);
-  printf "node_size: %d\n%!" (Numa.node_size 0);
+  printf "node_size64: %d\n%!" (Numa.node_size64 ~node:0);
+  printf "node_size: %d\n%!" (Numa.node_size ~node:0);
   printf "pagesize: %d\n%!" (Numa.pagesize ());
   let mems = Numa.get_mems_allowed () |> Numa.bits_of_bitmask in
   printf "get_mems_allowed: "; List.iter mems ~f:(printf " %d"); printf "\n%!";
   let cpus = Numa.parse_cpustring "1-5" in
   printf "parse_cpustring: "; List.iter cpus ~f:(printf " %d"); printf "\n%!";
   printf "CPUs:";
-  let cpus = Numa.node_to_cpus 0 in List.iter cpus ~f:(printf " %d");
+  let cpus = Numa.node_to_cpus ~node:0 in List.iter cpus ~f:(printf " %d");
   printf "\n%!";
   let mask = Numa.bits_to_bitmask [0;1;2;3] in
   printf "mask 0,1,2,3: ";  List.iter (Numa.bits_of_bitmask mask) ~f:(printf " %d"); printf "\n%!";
@@ -79,3 +79,12 @@ let () =
   let rnodes = Numa.get_run_node_mask () in
   printf "get_run_node_mask(post set): "; List.iter rnodes ~f:(printf " %d"); printf "\n%!";
 
+  (*
+  let cpus = Numa_ext.numa_num_configured_cpus () in
+    printf "CPUs = %d\n%!" cpus;
+  let mask = Numa_ext.numa_allocate_cpumask () in
+    printf "mask allocated\n%!";
+  let () = run cpus mask in
+  let () = run cpus mask in
+   ()
+  *)

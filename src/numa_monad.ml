@@ -33,7 +33,7 @@ module Numa(IO : IO) : Numa_intf.S with module IO := IO = struct
       in
       loop bitmask bits
 
-  let node_to_cpus node =
+  let node_to_cpus ~node =
     Numa.numa_allocate_cpumask ()
     >>= fun bitmask ->
     Numa.numa_node_to_cpus ~node ~bitmask
@@ -53,7 +53,7 @@ module Numa(IO : IO) : Numa_intf.S with module IO := IO = struct
   let get_mems_allowed () = Numa.numa_get_mems_allowed ()
   let parse_cpustring s = Numa.numa_parse_cpustring s >>= bits_of_bitmask
   let parse_nodestring s = Numa.numa_parse_nodestring s >>= bits_of_bitmask
-  let node_of_cpu node = Numa.numa_node_of_cpu node
+  let node_of_cpu ~node = Numa.numa_node_of_cpu node
   let node_distance node1 node2 = Numa.numa_distance node1 node2
 
   let get_affinity ~pid =
@@ -75,8 +75,8 @@ module Numa(IO : IO) : Numa_intf.S with module IO := IO = struct
   let preferred_node () = Numa.numa_preferred ()
   let set_preferred_node ~node = Numa.numa_set_preferred node
 
-  let node_size64 node = Numa.numa_node_size64 node
-  let node_size node = Numa.numa_node_size node
+  let node_size64 ~node = Numa.numa_node_size64 node
+  let node_size ~node = Numa.numa_node_size node
 
   let pagesize () = Numa.numa_pagesize ()
   let set_strict ~strict =
