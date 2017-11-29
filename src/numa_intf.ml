@@ -3,17 +3,9 @@ open Numalib_raw
 module type S = sig
   module IO : Io_intf.S
 
-  type bitmask
-
   (** [node_to_cpus] converts a node number, [node], to a list of CPUs
       hosted on the node *)
   val node_to_cpus : node:int -> int list IO.t
-
-  (** [bits_of_bitmask] converts the bit mask [bitmask] to a list of set bits *)
-  val bits_of_bitmask : bitmask -> int list IO.t
-
-  (** [bits_to_bitmask] converts a list of set bits to a bitmask *)
-  val bits_to_bitmask : int list -> bitmask IO.t
 
   (** [available] - true if NUMA is supported on the platform *)
   val available : unit -> bool IO.t

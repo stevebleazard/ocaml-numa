@@ -5,8 +5,6 @@ module Numa(IO : IO) : Numa_intf.S with module IO := IO = struct
 
   module Numa = Numalib_raw.Numa_monad(IO)
 
-  type bitmask = Numa.bitmask
-
   let bits_of_bitmask bitmask =
     Numa.numa_bitmask_nbytes ~bitmask
     >>= fun bytes ->
