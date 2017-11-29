@@ -17,7 +17,7 @@ module type S = sig
   val num_configured_cpus : unit -> int IO.t
   val num_task_cpus : unit -> int IO.t
   val num_task_nodes : unit -> int IO.t
-  val get_mems_allowed : unit -> bitmask IO.t
+  val get_mems_allowed : unit -> int list IO.t
   val parse_cpustring : string -> int list IO.t
   val parse_nodestring : string -> int list IO.t
   val node_of_cpu : node:int -> int IO.t

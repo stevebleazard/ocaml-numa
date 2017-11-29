@@ -50,7 +50,7 @@ module Numa(IO : IO) : Numa_intf.S with module IO := IO = struct
   let num_configured_cpus () = Numa.numa_num_configured_cpus ()
   let num_task_cpus () = Numa.numa_num_task_cpus ()
   let num_task_nodes () = Numa.numa_num_task_nodes ()
-  let get_mems_allowed () = Numa.numa_get_mems_allowed ()
+  let get_mems_allowed () = Numa.numa_get_mems_allowed () >>= bits_of_bitmask
   let parse_cpustring s = Numa.numa_parse_cpustring s >>= bits_of_bitmask
   let parse_nodestring s = Numa.numa_parse_nodestring s >>= bits_of_bitmask
   let node_of_cpu ~node = Numa.numa_node_of_cpu node
