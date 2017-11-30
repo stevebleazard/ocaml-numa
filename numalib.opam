@@ -8,11 +8,8 @@ bug-reports: "https://github.com/stevebleazard/ocaml-numa/issues"
 license: "MIT"
 dev-repo: "https://github.com/stevebleazard/ocaml-numa"
 build: [
-  ["jbuilder" "build" "-p" name "-j" jobs]
+  ["jbuilder" "build" "-p" name "-j" jobs "@install"]
 ]
-
-install: [make "install"]
-remove: ["ocamlfind" "remove" "ocaml-numa"]
 
 depends: [
   "jbuilder" {build}
