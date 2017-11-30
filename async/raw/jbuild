@@ -1,5 +1,8 @@
+(jbuild_version 1)
+
 (library
  ((name numalib_raw_async)
+   (public_name numalib.async.raw)
    (libraries (
     async
     core
