@@ -230,7 +230,7 @@ CAMLprim value caml_copy_nodemask_to_bitmask(value ml_nmask, value ml_mask)
   copy_nodemask_to_bitmask(nmask, mask);
   caml_acquire_runtime_system();
 
-  return Val_unit;
+  CAMLreturn(Val_unit);
 }
 
 /* void copy_bitmask_to_nodemask(struct bitmask * mask, nodemask_t * nmask)
@@ -248,7 +248,7 @@ CAMLprim value caml_copy_bitmask_to_nodemask(value ml_mask, value ml_nmask)
   copy_bitmask_to_nodemask(mask, nmask);
   caml_acquire_runtime_system();
 
-  return Val_unit;
+  CAMLreturn(Val_unit);
 }
 
 /* void copy_bitmask_to_bitmask(struct bitmask * bmpfrom, struct bitmask * bmpto)
@@ -266,7 +266,7 @@ CAMLprim value caml_copy_bitmask_to_bitmask(value ml_bmpfrom, value ml_bmpto)
   copy_bitmask_to_bitmask(bmpfrom, bmpto);
   caml_acquire_runtime_system();
 
-  return Val_unit;
+  CAMLreturn(Val_unit);
 }
 
 /* void nodemask_zero(nodemask_t * mask)
@@ -282,7 +282,7 @@ CAMLprim value caml_nodemask_zero(value ml_mask)
   nodemask_zero(mask);
   caml_acquire_runtime_system();
 
-  return Val_unit;
+  CAMLreturn(Val_unit);
 }
 
 /* int nodemask_equal(const nodemask_t * a, const nodemask_t * b)
@@ -421,7 +421,7 @@ CAMLprim value caml_numa_bind(value ml_nodes)
   numa_bind(nodes);
   caml_acquire_runtime_system();
 
-  return Val_unit;
+  CAMLreturn(Val_unit);
 }
 
 /* void numa_set_interleave_mask(struct bitmask * nodemask)
@@ -435,7 +435,7 @@ CAMLprim value caml_numa_set_interleave_mask(value ml_nodemask)
 
   numa_set_interleave_mask(nodemask);
 
-  return Val_unit;
+  CAMLreturn(Val_unit);
 }
 
 /* struct bitmask * numa_get_interleave_mask(void)
@@ -505,7 +505,7 @@ CAMLprim value caml_numa_set_preferred(value ml_node)
   numa_set_preferred(node);
   caml_acquire_runtime_system();
 
-  return Val_unit;
+  CAMLreturn(Val_unit);
 }
 
 /* void numa_set_localalloc(void)
@@ -532,7 +532,7 @@ CAMLprim value caml_numa_set_membind(value ml_nodemask)
   numa_set_membind(nodemask);
   caml_acquire_runtime_system();
 
-  return Val_unit;
+  CAMLreturn(Val_unit);
 }
 
 /* struct bitmask * numa_get_membind(void)
@@ -660,7 +660,7 @@ CAMLprim value caml_numa_set_bind_policy(value ml_strict)
   lib_mutex_unlock();
   caml_acquire_runtime_system();
 
-  return Val_unit;
+  CAMLreturn(Val_unit);
 }
 
 /* void numa_set_strict(int flag)
@@ -676,7 +676,7 @@ CAMLprim value caml_numa_set_strict(value ml_flag)
   numa_set_strict(flag);
   caml_acquire_runtime_system();
 
-  return Val_unit;
+  CAMLreturn(Val_unit);
 }
 
 /* int numa_num_possible_nodes(void)
