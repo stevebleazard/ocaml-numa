@@ -1,0 +1,20 @@
+opam-version: "1.2"
+name: "numalib"
+version: "0.1"
+maintainer: "Steve Bleazard <stevebleazard@googlemail.com>"
+authors: "Steve Bleazard <stevebleazard@googlemail.com>"
+homepage: "https://github.com/stevebleazard/ocaml-numa"
+bug-reports: "https://github.com/stevebleazard/ocaml-numa/issues"
+license: "MIT"
+dev-repo: "https://github.com/stevebleazard/ocaml-numa"
+build: [
+  ["jbuilder" "build" "-p" name "-j" jobs]
+]
+
+install: [make "install"]
+remove: ["ocamlfind" "remove" "ocaml-numa"]
+
+depends: [
+  "jbuilder" {build}
+]
+
