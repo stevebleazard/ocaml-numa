@@ -1,6 +1,7 @@
-open Core
 open Numalib_raw
 open Numalib
+
+let printf = Printf.printf
 
 let run () =
   printf "Raw:\n";
@@ -22,12 +23,12 @@ let () =
     printf "No numa\n%!";
     exit 255;
   end;
-  for _i = 1 to 20 do
-    let () = run () in ()
-  done;
+  run ();
+  printf "running GC...\n";
   Gc.full_major ();
+  printf "Done GC\n";
 
-  printf "Monadic:\n%!";
+  printf "\nMonadic:\n%!";
   printf "max_possible_node: %d\n%!" (Numa.max_possible_node ());
   printf "num_possible_nodes: %d\n%!" (Numa.num_possible_nodes ());
   printf "max_node: %d\n%!" (Numa.max_node ());
@@ -40,32 +41,35 @@ let () =
   printf "node_size: %d\n%!" (Numa.node_size ~node:0);
   printf "pagesize: %d\n%!" (Numa.pagesize ());
   let mems = Numa.get_mems_allowed () in
-  printf "get_mems_allowed: "; List.iter mems ~f:(printf " %d"); printf "\n%!";
+  printf "get_mems_allowed: "; List.iter (printf " %d") mems; printf "\n%!";
   let cpus = Numa.parse_cpustring "1-5" in
-  printf "parse_cpustring: "; List.iter cpus ~f:(printf " %d"); printf "\n%!";
+  printf "parse_cpustring: "; List.iter (printf " %d") cpus; printf "\n%!";
   printf "CPUs:";
-  let cpus = Numa.node_to_cpus ~node:0 in List.iter cpus ~f:(printf " %d");
+  let cpus = Numa.node_to_cpus ~node:0 in List.iter (printf " %d") cpus;
   printf "\n%!";
-  let pid = Unix.getpid () |> Pid.to_int in
+  let pid = Unix.getpid () in
   let cpus = Numa.get_affinity ~pid in
-  printf "get_affinity: "; List.iter cpus ~f:(printf " %d"); printf "\n%!";
+  printf "get_affinity: "; List.iter (printf " %d") cpus; printf "\n%!";
   let cpus = Numa.parse_cpustring "1,3,5,8-10" in
-  printf "set_affinity: "; List.iter cpus ~f:(printf " %d"); printf "\n%!";
+  printf "set_affinity: "; List.iter (printf " %d") cpus; printf "\n%!";
   let () = Numa.set_affinity ~pid ~cpus in
   let cpus = Numa.get_affinity ~pid in
-  printf "get_affinity post set: "; List.iter cpus ~f:(printf " %d"); printf "\n%!";
+  printf "get_affinity post set: "; List.iter (printf " %d") cpus; printf "\n%!";
   let nodes = Numa.get_interleave_mask () in
-  printf "get_interleave_mask: "; List.iter nodes ~f:(printf " %d"); printf "\n%!";
+  printf "get_interleave_mask: "; List.iter (printf " %d") nodes; printf "\n%!";
   let () = Numa.set_interleave_mask ~nodes:[0;1] in
   let nodes = Numa.get_interleave_mask () in
-  printf "get_interleave_mask post set: "; List.iter nodes ~f:(printf " %d"); printf "\n%!";
+  printf "get_interleave_mask post set: "; List.iter (printf " %d") nodes; printf "\n%!";
   let mbind = Numa.get_membind () in
-  printf "get_membind: "; List.iter mbind ~f:(printf " %d"); printf "\n%!";
+  printf "get_membind: "; List.iter (printf " %d") mbind; printf "\n%!";
   let () = Numa.set_membind ~nodes:[0] in
   let mbind = Numa.get_membind () in
-  printf "get_membind (post set): "; List.iter mbind ~f:(printf " %d"); printf "\n%!";
+  printf "get_membind (post set): "; List.iter (printf " %d") mbind; printf "\n%!";
   let rnodes = Numa.get_run_node_mask () in
-  printf "get_run_node_mask: "; List.iter rnodes ~f:(printf " %d"); printf "\n%!";
+  printf "get_run_node_mask: "; List.iter (printf " %d") rnodes; printf "\n%!";
   let () = Numa.run_on_node_mask ~nodes:[0] in
   let rnodes = Numa.get_run_node_mask () in
-  printf "get_run_node_mask(post set): "; List.iter rnodes ~f:(printf " %d"); printf "\n%!";
+  printf "get_run_node_mask(post set): "; List.iter (printf " %d") rnodes; printf "\n%!";
+  printf "running GC...\n";
+  Gc.full_major ();
+  printf "Done GC\n";
