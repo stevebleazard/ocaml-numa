@@ -2,4 +2,4 @@
 
 (executables
  ((names (numa_test))
-  (libraries (core numalib_raw numalib))))
+  (libraries (unix numalib_raw numalib))))
