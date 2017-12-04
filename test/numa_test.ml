@@ -3,20 +3,12 @@ open Numalib_raw
 open Numalib
 
 let run () =
+  printf "Raw:\n";
   let cpus = Numa_ext.numa_num_configured_cpus () in
     printf "CPUs = %d\n%!" cpus;
   let maxcpus = Numa_ext.numa_num_possible_cpus () in
     printf "Max CPUs = %d\n%!" maxcpus;
   let mask = Numa_ext.numa_allocate_cpumask () in
-    match Numa_ext.numa_node_to_cpus 0 mask with
-    | 0 -> 
-      for i = 0 to cpus - 1 do
-        if Numa_ext.numa_bitmask_isbitset mask i <> 0 then printf "%d " i;
-      done;
-      printf "\n%!";
-    | _ as err -> printf "ERROR: %d\n%!" err
-
-let _run cpus mask =
     match Numa_ext.numa_node_to_cpus 0 mask with
     | 0 -> 
       for i = 0 to cpus - 1 do
@@ -77,13 +69,3 @@ let () =
   let () = Numa.run_on_node_mask ~nodes:[0] in
   let rnodes = Numa.get_run_node_mask () in
   printf "get_run_node_mask(post set): "; List.iter rnodes ~f:(printf " %d"); printf "\n%!";
-
-  (*
-  let cpus = Numa_ext.numa_num_configured_cpus () in
-    printf "CPUs = %d\n%!" cpus;
-  let mask = Numa_ext.numa_allocate_cpumask () in
-    printf "mask allocated\n%!";
-  let () = run cpus mask in
-  let () = run cpus mask in
-   ()
-  *)
