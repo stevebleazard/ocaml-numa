@@ -66,7 +66,7 @@ let run () =
     Deferred.unit
 
 let () =
-  Command.async_spec
+  Command.async
     ~summary:"async numa test"
     Command.Spec.(
       empty
