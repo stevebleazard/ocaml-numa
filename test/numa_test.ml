@@ -3,7 +3,7 @@ open Numalib
 
 let printf = Printf.printf
 
-let run () =
+let raw_test () =
   printf "Raw:\n";
   let cpus = Numa_ext.numa_num_configured_cpus () in
     printf "CPUs = %d\n%!" cpus;
@@ -23,7 +23,7 @@ let () =
     printf "No numa\n%!";
     exit 255;
   end;
-  run ();
+  raw_test ();
   printf "running GC...\n";
   Gc.full_major ();
   printf "Done GC\n";
