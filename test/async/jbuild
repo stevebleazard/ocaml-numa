@@ -1,0 +1,5 @@
+(jbuild_version 1)
+
+(executables
+ ((names (numa_async_test))
+  (libraries (core async numalib_async))))
