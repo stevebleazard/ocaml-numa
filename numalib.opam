@@ -16,3 +16,10 @@ depends: [
   "async"    {>= "v0.9"}
 ]
 
+depexts: [
+  [["debian"] ["libnuma-dev"]]
+  [["ubuntu"] ["libnuma-dev"]]
+  [["centos"] ["numactl-libs" "numactl-devel"]]
+  [["fedora"] ["numactl-libs" "numactl-devel"]]
+  [["opensuse"] ["libnuma-devel"]]
+]
