@@ -6,7 +6,7 @@ homepage: "https://www.github.com/stevebleazard/ocaml-numa"
 bug-reports: "https://www.github.com/stevebleazard/ocaml-numa/issues"
 license: "MIT"
 dev-repo: "https://www.github.com/stevebleazard/ocaml-numa.git"
-doc: "https://stevebleazard.github.io/ocaml-numa/"
+doc: "https://stevebleazard.github.io/ocaml-numa/api.docdir/index.html"
 build: [
   ["jbuilder" "build" "-p" name "-j" jobs "@install"]
 ]
