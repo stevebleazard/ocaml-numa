@@ -24,11 +24,4 @@ depexts: [
   [["opensuse"] ["libnuma-devel"]]
   [["alpine"] ["libnuma-dev"]]
 ]
-
 available: [ ocaml-version >= "4.03.0" ]
-descr: "
-OCAML Interface to Linux NUMA API
-
-Provides an OCaml API to the Linux Non-Uniform Memory Access library including
-low level access to the C functions, a high level API and Async support
-"
