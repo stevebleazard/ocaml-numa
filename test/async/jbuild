@@ -3,4 +3,4 @@
 (executables
  ((names (numa_async_test))
   (preprocess (pps (ppx_jane ppx_driver.runner)))
-  (libraries (core async numalib_async))))
+  (libraries (core async numalib.async))))
