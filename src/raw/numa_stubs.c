@@ -807,11 +807,11 @@ CAMLprim value caml_numa_allocate_cpumask(value unit __attribute__((unused)))
   CAMLlocal1(ml_mask);
   struct bitmask *mask, **pmask;
 
-  mask = numa_allocate_cpumask();
-  ml_mask = caml_alloc_custom(&cpumask_custom_ops, sizeof mask, 0, 1);
   caml_release_runtime_system();
-  pmask = (struct bitmask **)Data_custom_val(ml_mask);
+  mask = numa_allocate_cpumask();
   caml_acquire_runtime_system();
+  ml_mask = caml_alloc_custom(&cpumask_custom_ops, sizeof mask, 0, 1);
+  pmask = (struct bitmask **)Data_custom_val(ml_mask);
   *pmask = mask;
 
   CAMLreturn(ml_mask);
